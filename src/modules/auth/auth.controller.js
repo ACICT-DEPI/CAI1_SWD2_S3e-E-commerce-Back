@@ -45,10 +45,13 @@ const login = catchError(async (req, res, next) => {
     if (!user) {
         return next(new AppError("Invalid email or password", statusCode.UNAUTHORIZED));
     }
+<<<<<<< HEAD
     // Check if the user is blocked or not
     if (user.isBlocked) {
         return next(new AppError("Your are blocked,please contact the support!", statusCode.FORBIDDEN));
     }
+=======
+>>>>>>> origin/master
     //TODO Check if the user's email is verified
     // if (!user.confirmEmail) {
     //     return next(new AppError("Please verify your email", statusCode.UNAUTHORIZED));

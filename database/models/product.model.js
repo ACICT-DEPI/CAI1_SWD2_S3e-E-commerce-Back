@@ -34,8 +34,11 @@ const productSchema = new mongoose.Schema({
     color: [],
     typeof: String,
     imgCover: String,
+<<<<<<< HEAD
     typeof: String,
     imgCover: String,
+=======
+>>>>>>> origin/master
     images: [],
     price: {
         type: Number,
@@ -83,7 +86,11 @@ const productSchema = new mongoose.Schema({
         ref: 'subCategory',
     },
     brand: {
+<<<<<<< HEAD
         type:String
+=======
+        type:String,
+>>>>>>> origin/master
     },
     createdBy: {
         type: mongoose.Types.ObjectId,

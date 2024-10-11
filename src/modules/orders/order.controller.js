@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+=======
+>>>>>>> origin/master
 import { cartModel } from "../../../database/models/cart.model.js";
 import { orderModel } from "../../../database/models/order.model.js";
 import { productModel } from "../../../database/models/product.model.js";
@@ -49,6 +52,7 @@ const getAllOrders = catchError(async (req, res, next) => {
     res.status(statusCode.OK).json({ message: "Orders found successfully ✅", orders });
 });
 
+<<<<<<< HEAD
 //!Create Checkout Session
 const createCheckoutSession = catchError(async (req, res, next) => {
     let cart = await cartModel.findById(req.params.id);
@@ -84,10 +88,16 @@ const createCheckoutSession = catchError(async (req, res, next) => {
     return res.status(statusCode.OK).json({ session });
 });
 
+=======
+>>>>>>> origin/master
 
 export {
     createCashOrder,
     getSpecificOrder,
+<<<<<<< HEAD
     getAllOrders,
     createCheckoutSession
+=======
+    getAllOrders
+>>>>>>> origin/master
 }

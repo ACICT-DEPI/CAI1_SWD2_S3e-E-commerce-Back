@@ -24,6 +24,10 @@ productRouter
         { name: "images", maxcout: 10 }
     ]), validation(updateProductVal), updateProduct)
     .delete(protectedRoutes, allowedTo('admin'), deleteProduct)
+<<<<<<< HEAD
     .get(getSpecificProduct)
+=======
+    .get( getSpecificProduct)
+>>>>>>> origin/master
 
 export default productRouter;

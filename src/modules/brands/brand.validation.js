@@ -12,7 +12,11 @@ const addNewBrandval = joi.object({
         destination: joi.string().required(),
         filename: joi.string().required(),
         path: joi.string().required(),
+<<<<<<< HEAD
     })
+=======
+    }).required()
+>>>>>>> origin/master
 })
 //validation for getting a specific brand
 const getSpecificBrandVal = joi.object({

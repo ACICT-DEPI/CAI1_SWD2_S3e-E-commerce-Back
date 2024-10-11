@@ -1,5 +1,8 @@
 import mongoose from "mongoose"
+<<<<<<< HEAD
 import { productModel } from "./product.model.js";
+=======
+>>>>>>> origin/master
 
 const subCategorySchema = new mongoose.Schema({
     name: {
@@ -31,6 +34,7 @@ subCategorySchema.post('init', function (doc) {
     doc.img = process.env.BASE_URL + '/uploads/' + doc.img
 })
 
+<<<<<<< HEAD
 subCategorySchema.pre('findOneAndDelete', async function (next) {
     const subCategory = await this.model.findOne(this.getQuery());
     if (subCategory) {
@@ -38,4 +42,6 @@ subCategorySchema.pre('findOneAndDelete', async function (next) {
     }
     next();
 });
+=======
+>>>>>>> origin/master
 export const subCategoryModel = mongoose.model('subCategory', subCategorySchema)
