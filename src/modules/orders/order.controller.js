@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-=======
->>>>>>> origin/master
 import { cartModel } from "../../../database/models/cart.model.js";
 import { orderModel } from "../../../database/models/order.model.js";
 import { productModel } from "../../../database/models/product.model.js";
@@ -40,9 +37,16 @@ const createCashOrder = catchError(async (req, res, next) => {
 
 //get specific order
 const getSpecificOrder = catchError(async (req, res, next) => {
-    let order = await orderModel.findOne({ user: req.user._id }).populate("orderItems.product");
-    if (!order) return next(new AppError("Order not found!", statusCode.NOT_FOUND));
-    res.status(statusCode.OK).json({ message: "Order found successfully ✅", order });
+    const orders = await orderModel.find({ user: req.user._id }).populate("orderItems.product");
+    if (!orders.length) {
+        return next(new AppError("No orders found for this user!", statusCode.NOT_FOUND));
+    }
+    const totalPriceOfAllOrders = orders.reduce((acc, order) => acc + order.totalOrderPrice, 0);
+    res.status(statusCode.OK).json({
+        message: "Orders found successfully ✅",
+        orders,
+        totalPriceOfAllOrders
+    });
 });
 
 //get all orders
@@ -52,7 +56,6 @@ const getAllOrders = catchError(async (req, res, next) => {
     res.status(statusCode.OK).json({ message: "Orders found successfully ✅", orders });
 });
 
-<<<<<<< HEAD
 //!Create Checkout Session
 const createCheckoutSession = catchError(async (req, res, next) => {
     let cart = await cartModel.findById(req.params.id);
@@ -88,16 +91,10 @@ const createCheckoutSession = catchError(async (req, res, next) => {
     return res.status(statusCode.OK).json({ session });
 });
 
-=======
->>>>>>> origin/master
 
 export {
     createCashOrder,
     getSpecificOrder,
-<<<<<<< HEAD
     getAllOrders,
     createCheckoutSession
-=======
-    getAllOrders
->>>>>>> origin/master
 }

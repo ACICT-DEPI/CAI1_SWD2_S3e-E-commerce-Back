@@ -1,8 +1,5 @@
 import mongoose, { Schema } from "mongoose"
-<<<<<<< HEAD
 import { productModel } from "./product.model.js";
-=======
->>>>>>> origin/master
 
 const categorySchema = new mongoose.Schema({
     name: {
@@ -26,7 +23,6 @@ const categorySchema = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-<<<<<<< HEAD
 categorySchema.post('init', function (doc) {
     doc.img = process.env.BASE_URL + '/uploads/' + doc.img
 })
@@ -39,10 +35,4 @@ categorySchema.pre('findOneAndDelete', async function (next) {
     }
     next();
 });
-=======
-categorySchema.post('init',function(doc){
-    doc.img=process.env.BASE_URL+'/uploads/'+doc.img
-})
-
->>>>>>> origin/master
 export const categoryModel = mongoose.model('category', categorySchema)

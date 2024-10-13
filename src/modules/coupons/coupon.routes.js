@@ -12,7 +12,7 @@ config();
 couponRouter
     .route("/")
     .post(protectedRoutes, allowedTo('admin'), validation(addCouponVal), addCoupon)
-    .get(protectedRoutes, allowedTo('admin'), getAllCoupons)
+    .get(protectedRoutes, allowedTo('user','admin'), getAllCoupons)
 
 couponRouter
     .route("/log")

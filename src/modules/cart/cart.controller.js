@@ -21,10 +21,6 @@ const addToCart = catchError(async (req, res, next) => {
     req.body.user = req.user.id;
     req.body.price = product.price;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
     // Check if the user already has a cart
     let isCartExist = await cartModel.findOne({ user: req.user.id });
 
@@ -81,7 +77,6 @@ const addToCart = catchError(async (req, res, next) => {
     res.status(statusCode.OK).json({ message: "Cart updated successfully ✅", cart: isCartExist });
 });
 
-<<<<<<< HEAD
 //! Delete item from the cart
 const deleteItemFromCart = catchError(async (req, res, next) => {
     let cart = await cartModel.findOne({ user: req.user._id });
@@ -99,28 +94,6 @@ const deleteItemFromCart = catchError(async (req, res, next) => {
     return res.status(statusCode.OK).json({ message: "Cart Item Deleted Successfully ✅", cart });
 });
 
-=======
-
-const deleteItemFromCart = catchError(async (req, res, next) => {
-    let cart = await cartModel.findOneAndUpdate(
-        { user: req.user._id },
-        { $pull: { cartItems: { _id: req.params.id } } },
-        { new: true }
-    );
-    if (!cart) {
-        return res.status(statusCode.NOT_FOUND).json({ message: "Cart Not Found!" });
-    }
-    if (cart.cartItems.length === 0) {
-        cart.totalPrice = 0;
-    } else {
-        cart.totalPrice = cart.cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-    }
-    await cart.save();
-    return res.status(statusCode.OK).json({ message: "Cart Item Deleted Successfully ✅", cart });
-});
-
-
->>>>>>> origin/master
 const updateCart = catchError(async (req, res, next) => {
     let cart = await cartModel.findOne({ user: req.user._id });
     if (!cart) {
@@ -130,31 +103,12 @@ const updateCart = catchError(async (req, res, next) => {
     if (!item) {
         return res.status(statusCode.NOT_FOUND).json({ message: "Item Not Found!" });
     }
-<<<<<<< HEAD
     item.quantity = req.body.quantity;
     cart.totalPrice = cart.cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
     await cart.save();
     return res.status(statusCode.OK).json({ message: "Cart Updated Successfully ✅", cart });
 });
 
-=======
-    if (req.body.quantity) {
-        item.quantity = req.body.quantity;
-    }
-    if (req.body.size) {
-        item.size = req.body.size;
-    }
-    if (req.body.color) {
-        item.color = req.body.color;
-    }
-    cart.totalPrice = cart.cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-    await cart.save();
-
-    return res.status(statusCode.OK).json({ message: "Cart Updated Successfully ✅", cart });
-});
-
-
->>>>>>> origin/master
 // Get Logged In User Cart
 const getLoggedInUserCart = catchError(async (req, res, next) => {
     let cart = await cartModel.findOne({ user: req.user._id }).populate('cartItems.product')
@@ -193,10 +147,4 @@ export {
     getLoggedInUserCart,
     clearUserCart,
     applyCoupon
-<<<<<<< HEAD
 }
-=======
-}
-
-
->>>>>>> origin/master

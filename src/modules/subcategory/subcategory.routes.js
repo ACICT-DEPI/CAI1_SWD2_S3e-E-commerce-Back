@@ -17,6 +17,6 @@ subcategoryRouter
     .route("/:id")
     .put(protectedRoutes, allowedTo('admin'), uploadSingleFile('img'), updateSubcategory)
     .delete(protectedRoutes, allowedTo('admin'), deleteSubcategory)
-    .get(protectedRoutes, allowedTo('user', 'admin'), getSpecificSubcategory)
+    .get( getSpecificSubcategory)
 
 export default subcategoryRouter;

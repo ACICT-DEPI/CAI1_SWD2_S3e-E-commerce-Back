@@ -7,13 +7,10 @@ const userSchema = new mongoose.Schema({
         trim: true,
         minLength: [2, 'name must be at least 2 characters']
     },
-<<<<<<< HEAD
     isBlocked: {
         type: Boolean,
         default: false
     },
-=======
->>>>>>> origin/master
     //login with the default email like ----@blackmart.com
     email: {
         type: String,
