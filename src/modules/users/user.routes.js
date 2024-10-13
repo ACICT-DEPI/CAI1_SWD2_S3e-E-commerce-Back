@@ -16,7 +16,7 @@ userRouter
 userRouter
     .route("/:id")
     .put(protectedRoutes, allowedTo('admin'), validation(updateUserVal), updateUser)
-    .delete(protectedRoutes, allowedTo('admin'), deleteUser)
+    .delete(protectedRoutes, allowedTo('user', 'admin'), deleteUser)
     .get(protectedRoutes, allowedTo('admin'), validation(getSpecificUserVal), getSpecificUser)
 
 userRouter
